@@ -41,6 +41,18 @@ release:
 	GOARCH=amd64 GOOS=linux go build $(BUILD_FLAGS) cmd/h2spec/h2spec.go
 	tar -czf release/h2spec_linux_amd64.tar.gz h2spec
 	rm -rf h2spec
+	
+	GOARCH=amd64 GOOS=darwin go build $(BUILD_FLAGS) cmd/h2spec/h2specd.go
+	tar -czf release/h2specd_darwin_amd64.tar.gz h2specd
+	rm -rf h2specd
+	
+	GOARCH=amd64 GOOS=windows go build $(BUILD_FLAGS) cmd/h2spec/h2specd.go
+	zip release/h2specd_windows_amd64.zip -r h2specd.exe
+	rm -rf h2specd.exe
+	
+	GOARCH=amd64 GOOS=linux go build $(BUILD_FLAGS) cmd/h2spec/h2specd.go
+	tar -czf release/h2specd_linux_amd64.tar.gz h2specd
+	rm -rf h2specd
 
 vendor:
 	glide install
